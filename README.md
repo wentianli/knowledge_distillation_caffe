@@ -1,5 +1,5 @@
 # KnowledgeDistillation Layer (Caffe implementation)
-This is the CPU implementation of knowledge distillation in Caffe.<br>
+This is a CPU implementation of knowledge distillation in Caffe.<br>
 This code is heavily based on [softmax_loss_layer.hpp](https://github.com/BVLC/caffe/blob/master/include/caffe/layers/softmax_loss_layer.hpp) and [softmax_loss_layer.cpp](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/softmax_loss_layer.cpp).<br><br>
 Please refer to the [paper](https://arxiv.org/abs/1503.02531)<br>
 ```
@@ -16,21 +16,22 @@ git clone https://github.com/wentianli/knowledge_distillation_caffe.git
 ```
 3. Move files to your Caffe folder<br>
 ```bash
-cp $ROOT/konwledge_distillaiton_layer.hpp $CAFFE/include/caffe/layers
-cp $ROOT/konwledge_distillaiton_layer.cpp $CAFFE/src/caffe/layers
+cp $ROOT/knowledge_distillation_layer.hpp $CAFFE/include/caffe/layers
+cp $ROOT/knowledge_distillation_layer.cpp $CAFFE/src/caffe/layers
 ```
 4. Modify `$CAFFE/src/caffe/proto/caffe.proto`<br>
 add `optional KnowledgeDistillationParameter` in `LayerParameter`
 ```proto
 message LayerParameter {
-  optional string name = 1; // the layer name
   ...
-  optional WindowDataParameter window_data_param = 129;
+
   //next available layer-specific ID
   optional KnowledgeDistillationParameter knowledge_distillation_param = 147;
 }
-```<br>
+```
+<br>
 add `message KnowledgeDistillationParameter`
+<br>
 ```proto
 message KnowledgeDistillationParameter {
   optional float temperature = 1 [default = 1];
@@ -40,7 +41,7 @@ message KnowledgeDistillationParameter {
 <br>
 
 ## Usage
-KnowledgeDistillation Layer has one specific parameter `temperature`.<br>It takes 2 or 3 input blobs:<br>
+KnowledgeDistillation Layer has one specific parameter `temperature`.<br><br>The layer takes 2 or 3 input blobs:<br>
 `bottom[0]`: the logits of the student<br>
 `bottom[1]`: the logits of the teacher<br>
 `bottom[2]`(*optional*): label inputs<br>
