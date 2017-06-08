@@ -38,8 +38,7 @@ namespace caffe {
  *      @f$, for softmax output class probabilites @f$ \hat{p} @f$ by the student
  *      and @f$ \hat{q} @f$ by the teacher
  *
- * [1] Hinton, G. Vinyals, O. and Dean, J. Distilling knowledge in a neural network.
- *     In Deep Learning and Representation Learning Workshop, NIPS, 2014.
+ * [1] Hinton, G. Vinyals, O. and Dean, J. Distilling knowledge in a neural network. 2015.
  *
  * TODO: GPU implementation
  */
