@@ -19,8 +19,7 @@ git clone https://github.com/wentianli/knowledge_distillation_caffe.git
 cp $ROOT/knowledge_distillation_layer.hpp $CAFFE/include/caffe/layers
 cp $ROOT/knowledge_distillation_layer.cpp $CAFFE/src/caffe/layers
 ```
-4. Modify `$CAFFE/src/caffe/proto/caffe.proto`<br>
-add `optional KnowledgeDistillationParameter` in `LayerParameter`
+4. Modify `$CAFFE/src/caffe/proto/caffe.proto`<br>add `optional KnowledgeDistillationParameter` in `LayerParameter`
 ```proto
 message LayerParameter {
   ...
@@ -29,9 +28,7 @@ message LayerParameter {
   optional KnowledgeDistillationParameter knowledge_distillation_param = 147;
 }
 ```
-<br>
-add `message KnowledgeDistillationParameter`
-<br>
+<br>add `message KnowledgeDistillationParameter`<br>
 ```proto
 message KnowledgeDistillationParameter {
   optional float temperature = 1 [default = 1];
